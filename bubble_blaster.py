@@ -29,7 +29,7 @@ sub_id2 = c.create_oval(0, 0, 30, 30, outline="white")
 # Submarine radius for collision detection logic
 SUB_R = 15
 
-# Calculate the center coordinates of the sreen
+# Calculate the center coordinates of the screen
 MID_X = WIDTH / 2
 MID_Y = HEIGHT / 2
 
@@ -37,3 +37,24 @@ MID_Y = HEIGHT / 2
 c.move(sub_id, MID_X, MID_Y)
 c.move(sub_id2, MID_X, MID_Y)
 
+# SUB_SPEED is the distance the sub moves per key press
+SUB_SPEED = 10
+
+def move_submarine(event):
+    """ Event handler to move the submarine with arrow keys """
+    if event.keysym == 'Up':
+        c.move(sub_id, 0, -SUB_SPEED)
+        c.move(sub_id2, 0, -SUB_SPEED)
+    elif event.keysym == 'Down':
+        c.move(sub_id, 0, SUB_SPEED)
+        c.move(sub_id2, 0, SUB_SPEED)
+    elif event.keysym == 'Left':
+        c.move(sub_id, -SUB_SPEED, 0)
+        c.move(sub_id2, -SUB_SPEED, 0)
+    elif event.keysym == 'Right':
+        # ERROR FIX: In your book it says -SUB_SPEED for right, 
+        # but to go right you need a POSITIVE number (+)
+        c.move(sub_id, SUB_SPEED, 0)
+        c.move(sub_id2, SUB_SPEED, 0)
+    c.bind_all('<Key>', move_submarine)
+    
