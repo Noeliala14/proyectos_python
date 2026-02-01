@@ -1,7 +1,7 @@
 # Python Learning Journey 🚀
 This repository contains my progress in Python programming, focusing on logic, data structures, and GUI development.
 
- 📁 Projects Included
+## 📁 Projects Included
 
 ## 1. Bubble Blaster (Cazaburbujas) 🫧
 A graphical game developed using the `tkinter` library. This project helped me understand:
