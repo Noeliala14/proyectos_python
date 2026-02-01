@@ -90,3 +90,38 @@ def create_bubble():
     bub_r.append(r)
     bub_speed.append(randint(1, MAX_BUB_SPEED))
 
+from time import sleep, time
+
+# This function goes through the list of bubbles and moves each one
+def move_bubbles():
+    """ Iterates through all bubbles and moves them according to their speed """
+    for i in range(len(bub_id)):
+        # Move the bubble on the canvas
+        c.move(bub_id[i], -bub_speed[i], 0)
+
+def get_coords(id_num):
+    """ Returns the center coordinates of a specific bubble """
+    pos = c.coords(id_num)
+    # The list 'pos' contains [x1, y1, x2, y2]
+    # We calculate the midpoint to find the center
+    x = (pos[0] + pos[2]) / 2
+    y = (pos[1] + pos[3]) / 2
+    return x, y
+
+# MAIN GAME LOOP
+BUB_CHANCE = 10
+
+while True:
+    # 1. Randomly decide if a new bubble should be created
+    if randint(1, BUB_CHANCE) == 1:
+        create_bubble()
+    
+    # 2. Update positions of all existing bubbles
+    move_bubbles()
+    
+    # 3. Refresh the window to show the movement
+    window.update()
+    
+    # 4. Control the game speed (frame rate)
+    sleep(0.01)
+    
