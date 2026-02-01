@@ -57,4 +57,36 @@ def move_submarine(event):
         c.move(sub_id, SUB_SPEED, 0)
         c.move(sub_id2, SUB_SPEED, 0)
     c.bind_all('<Key>', move_submarine)
+
+
+from random import randint
+
+# These lists act as our database for active bubbles
+bub_id = list()
+bub_r = list()
+bub_speed = list()
+
+# Constants for bubble generation
+MIN_BUB_R = 10
+MAX_BUB_R = 30
+MAX_BUB_SPEED = 10
+GAP = 100
+
+def create_bubble():
+    """ Generates a new bubble with random size and speed """
+    # Set the starting position (off-screen to the right)
+    x = WIDTH + GAP
+    y = randint(0, HEIGHT)
     
+    # Choose a random radius
+    r = randint(MIN_BUB_R, MAX_BUB_R)
+    
+    # Draw the bubble 
+
+    id1 = c.create_oval(x - r, y - r, x + r, y + r, outline="white")
+    
+    # Save the bubble data into our lists
+    bub_id.append(id1)
+    bub_r.append(r)
+    bub_speed.append(randint(1, MAX_BUB_SPEED))
+
