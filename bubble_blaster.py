@@ -118,10 +118,28 @@ while True:
     
     # 2. Update positions of all existing bubbles
     move_bubbles()
+    clean_up_bubbles()
     
     # 3. Refresh the window to show the movement
     window.update()
     
     # 4. Control the game speed (frame rate)
     sleep(0.01)
+
+# Function to remove a bubble from the game and the lists
+def delete_bubble(i):
+    """ Removes a bubble from the canvas and deletes its data from the lists """
+    del bub_r[i]
+    del bub_speed[i]
+    c.delete(bub_id[i]) # Removes the shape from the screen
+    del bub_id[i]
+
+# Function to clean up bubbles that float off-screen
+def clean_up_bubbles():
+    """ Checks all bubbles and deletes them if they are too far to the left """
+    # We go backwards (from the end to the start) to avoid index errors
+    for i in range(len(bub_id)-1, -1, -1):
+        x, y = get_coords(bub_id[i])
+        if x < -GAP:
+            delete_bubble(i)
     
