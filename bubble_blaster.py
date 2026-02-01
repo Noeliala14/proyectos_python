@@ -6,6 +6,9 @@ DATE: 2026
 """
 
 import tkinter as tk
+from random import randint 
+from time import sleep, time
+
 
 # 1. SETUP CONSTANTS
 HEIGHT = 500
@@ -56,10 +59,10 @@ def move_submarine(event):
         # but to go right you need a POSITIVE number (+)
         c.move(sub_id, SUB_SPEED, 0)
         c.move(sub_id2, SUB_SPEED, 0)
-    c.bind_all('<Key>', move_submarine)
+        
+c.bind_all('<Key>', move_submarine)
 
 
-from random import randint
 
 # These lists act as our database for active bubbles
 bub_id = list()
@@ -90,7 +93,7 @@ def create_bubble():
     bub_r.append(r)
     bub_speed.append(randint(1, MAX_BUB_SPEED))
 
-from time import sleep, time
+
 
 # This function goes through the list of bubbles and moves each one
 def move_bubbles():
@@ -108,24 +111,6 @@ def get_coords(id_num):
     y = (pos[1] + pos[3]) / 2
     return x, y
 
-# MAIN GAME LOOP
-BUB_CHANCE = 10
-
-while True:
-    # 1. Randomly decide if a new bubble should be created
-    if randint(1, BUB_CHANCE) == 1:
-        create_bubble()
-    
-    # 2. Update positions of all existing bubbles
-    move_bubbles()
-    clean_up_bubbles()
-    
-    # 3. Refresh the window to show the movement
-    window.update()
-    
-    # 4. Control the game speed (frame rate)
-    sleep(0.01)
-
 # Function to remove a bubble from the game and the lists
 def delete_bubble(i):
     """ Removes a bubble from the canvas and deletes its data from the lists """
@@ -142,4 +127,22 @@ def clean_up_bubbles():
         x, y = get_coords(bub_id[i])
         if x < -GAP:
             delete_bubble(i)
+
+# MAIN GAME LOOP
+BUB_CHANCE = 10
+
+while True:
+    # 1. Randomly decide if a new bubble should be created
+    if randint(1, BUB_CHANCE) == 1:
+        create_bubble()
     
+    # 2. Update positions of all existing bubbles
+    move_bubbles()
+    clean_up_bubbles()
+
+    # 3. Refresh the window to show the movement
+    window.update()
+    
+    # 4. Control the game speed (frame rate)
+    sleep(0.01)
+
