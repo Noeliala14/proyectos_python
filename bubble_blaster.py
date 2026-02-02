@@ -8,6 +8,7 @@ DATE: 2026
 import tkinter as tk
 from random import randint 
 from time import sleep, time
+from math import sqrt
 
 
 # 1. SETUP CONSTANTS
@@ -127,6 +128,18 @@ def clean_up_bubbles():
         x, y = get_coords(bub_id[i])
         if x < -GAP:
             delete_bubble(i)
+    
+
+def get_distance(id1, id2):
+    """ Calculates the distance between two objects using the Pythagorean theorem """
+    # Get coordinates of the first object (e.g., the submarine)
+    x1, y1 = get_coords(id1)
+    
+    # Get coordinates of the second object (e.g., a bubble)
+    x2, y2 = get_coords(id2)
+    
+    # Return the distance between them
+    return sqrt((x2 - x1)**2 + (y2 - y1)**2)
 
 # MAIN GAME LOOP
 BUB_CHANCE = 10
