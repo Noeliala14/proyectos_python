@@ -173,6 +173,7 @@ end_time = time() + TIME_LIMIT
 # MAIN GAME LOOP
 BUB_CHANCE = 10
 score = 0
+
 while True:
     # 1. Randomly decide if a new bubble should be created
     if randint(1, BUB_CHANCE) == 1:
@@ -192,8 +193,9 @@ while True:
         c.create_text(WIDTH/2, HEIGHT/2, text='GAME OVER', fill='white', font=('Helvetica', 30))
 
     # 3. Refresh the window to show the movement
-    window.update()
-    break # Stops the game
+        window.update()
+        sleep(3) # Wait 3 seconds so you can see the Game Over message
+        break # Stops the game
 
 # Update the counters on the screen
     c.itemconfig(time_text, text=str(time_left))
