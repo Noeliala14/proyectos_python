@@ -188,14 +188,19 @@ while True:
     # Calculate remaining time
     # (End time in the future minus current time)
     time_left = int(end_time - time())
+    
     if time_left <= 0:
-        # Show Game Over when time runs out
-        c.create_text(WIDTH/2, HEIGHT/2, text='GAME OVER', fill='white', font=('Helvetica', 30))
-
-    # 3. Refresh the window to show the movement
+        # 1. Create 'GAME OVER' text in the center
+        c.create_text(WIDTH / 2, HEIGHT / 2, \
+            text='GAME OVER', fill='white', font=('Helvetica', 50, 'bold'))
+        
+        # 2. Create final score text just below
+        c.create_text(WIDTH / 2, (HEIGHT / 2) + 70, \
+            text='Final Score: ' + str(score), fill='silver', font=('Helvetica', 20))
+        
         window.update()
-        sleep(3) # Wait 3 seconds so you can see the Game Over message
-        break # Stops the game
+        sleep(5) # Give the player 5 seconds to see the result
+        break # Exit the game loop
 
 # Update the counters on the screen
     c.itemconfig(time_text, text=str(time_left))
