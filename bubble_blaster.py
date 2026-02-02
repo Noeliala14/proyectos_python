@@ -155,6 +155,20 @@ def check_collision():
             delete_bubble(i)
     return points
 
+# Create visual labels for the game
+c.create_text(50, 30, text='TIME', fill='white')
+c.create_text(150, 30, text='SCORE', fill='white')
+
+# Create the dynamic counters (the numbers that change)
+time_text = c.create_text(50, 50, text='30', fill='white')
+score_text = c.create_text(150, 50, text='0', fill='white')
+
+# Game constants 
+TIME_LIMIT = 30
+BONUS_SCORE = 1000
+score = 0
+end_time = time() + TIME_LIMIT
+
 
 # MAIN GAME LOOP
 BUB_CHANCE = 10
@@ -170,9 +184,23 @@ while True:
     score += check_collision()
     print(score)
 
+    # Calculate remaining time
+    # (End time in the future minus current time)
+    time_left = int(end_time - time())
+    if time_left <= 0:
+        # Show Game Over when time runs out
+        c.create_text(WIDTH/2, HEIGHT/2, text='GAME OVER', fill='white', font=('Helvetica', 30))
+
     # 3. Refresh the window to show the movement
     window.update()
-    
+    break # Stops the game
+
+# Update the counters on the screen
+    c.itemconfig(time_text, text=str(time_left))
+    c.itemconfig(score_text, text=str(score))
+
+    window.update()
+
     # 4. Control the game speed (frame rate)
     sleep(0.01)
 
