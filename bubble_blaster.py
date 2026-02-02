@@ -141,9 +141,24 @@ def get_distance(id1, id2):
     # Return the distance between them
     return sqrt((x2 - x1)**2 + (y2 - y1)**2)
 
+def check_collision():
+    """ Checks if the submarine touches any bubble and returns the score """
+    points = 0
+    # Loop through bubbles backwards to delete them safely
+    for i in range(len(bub_id) - 1, -1, -1):
+        # Compare distance between sub hull (sub_id2) and bubble
+        # Collision happens if distance < sum of both radii
+        if get_distance(sub_id2, bub_id[i]) < (SUB_R + bub_r[i]):
+            # Points are calculated based on bubble size and speed
+            points += (bub_r[i] + bub_speed[i])
+            # Remove the bubble that exploded
+            delete_bubble(i)
+    return points
+
+
 # MAIN GAME LOOP
 BUB_CHANCE = 10
-
+score = 0
 while True:
     # 1. Randomly decide if a new bubble should be created
     if randint(1, BUB_CHANCE) == 1:
@@ -152,6 +167,8 @@ while True:
     # 2. Update positions of all existing bubbles
     move_bubbles()
     clean_up_bubbles()
+    score += check_collision()
+    print(score)
 
     # 3. Refresh the window to show the movement
     window.update()
