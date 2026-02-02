@@ -27,5 +27,7 @@ A graphical game developed using the `tkinter` library. This project helped me u
 ## 👤 Author
 **Noelia Lázaro** - 2026
 *Aspiring Data Analyst & Software Developer*
-![Bubble Blaster Screenshot](image_11a4d9.png)
+<img width="1006" height="665" alt="image" src="https://github.com/user-attachments/assets/7eea7a83-bfec-451f-9406-37e22279be6c" />
+
+![Bubble Blaster Screenshot].
 
