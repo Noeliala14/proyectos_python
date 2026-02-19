@@ -23,7 +23,7 @@ A graphical game developed using the `tkinter` library. This project helped me u
 * **Language:** Python 3.x
 * **Version Control:** Git & GitHub (Workflows, Commits, Branching)
 * **IDE:** Visual Studio Code
-* 
+  
 ## 👤 Author
 **Noelia Lázaro** - 2026
 *Aspiring Data Analyst & Software Developer*
